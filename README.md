@@ -1,4 +1,4 @@
-# Zepto Carousel Plugin (Experimental)
+# Zepto Carousel Plugin (Webkit only & Experimental)
 
 A lightweight zepto plugin totally based on [SwipeView](https://github.com/cubiq/SwipeView).
 
