@@ -1,48 +1,86 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <title>Zepto-Carousel-Plugin</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="http://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <h1>Zepto-Carousel-Plugin</h1>
-    <a href="https://github.com/etanxing/zepto-carousel-plugin"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-    <div class="container">
-    </div>
-    <div class="slides">
-        <div class="slide">Page1</div>
-        <div class="slide">Page2</div>
-        <div class="slide">Page3</div>
-        <div class="slide">Page4</div>
-    </div>
-    <button class="prev" type="button">Previous</button>
-    <button class="next" type="button">Next</button>
+    
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Zepto-Carousel-Plugin
+        </title>
+        <link rel="stylesheet" href="styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet"
+        type="text/css">
+    </head>
+    
+    <body>
+        <h1>
+            Zepto-Carousel-Plugin
+        </h1>
+        <a href="https://github.com/etanxing/zepto-carousel-plugin"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+        <div class="container">
+        </div>
+        <div class="slides">
+            <div class="slide">
+                Page1
+                <span>
+                    Page1
+                </span>
+            </div>
+            <div class="slide">
+                Page2
+                <span>
+                    Page2
+                </span>
+            </div>
+            <div class="slide">
+                Page3
+                <span>
+                    Page3
+                </span>
+            </div>
+            <div class="slide">
+                Page4
+                <span>
+                    Page4
+                </span>
+            </div>
+        </div>
+        <button class="prev" type="button">
+            Previous
+        </button>
+        <button class="next" type="button">
+            Next
+        </button>
+        <script src="http://zeptojs.com/zepto.min.js">
+        </script>
+        <script src="zepto-carousel-plugin.js">
+        </script>
+        <script>
+        $('.container').carousel({
+            slides: $('.slides').children(),
+            numberOfPages: 4
+        });
 
-    <script src="http://zeptojs.com/zepto.min.js"></script>
-    <script src="zepto-carousel-plugin.js"></script>
-    <script>
-        //$('.container ul').carousel();
-        $('.container').carousel(
-            {
-                slides: $('.slides').children(),
-                numberOfPages : 4
-            });
+        // $('.container').on('swipeview-flip', function(e, masterPages, options) {
+        //     var el, upcoming, i;
 
-        $('.container').on('swipeview-flip', function (e, masterPages, options) {
-            var el,
-                upcoming,
-                i;
+        //     for (i = 0; i < 3; i++) {
+        //         upcoming = masterPages[i].dataset.upcomingPageIndex;
+        //         if (upcoming != masterPages[i].dataset.pageIndex) {
+        //             el = masterPages[i].querySelector('div')
+        //             el.innerHTML = options.slides[upcoming].innerHTML
+        //         }
+        //     }
+        // })
 
-            for (i=0; i<3; i++) {
-                upcoming = masterPages[i].dataset.upcomingPageIndex;
-                if (upcoming != masterPages[i].dataset.pageIndex) {
-                    el = masterPages[i].querySelector('div')
-                    el.innerHTML = options.slides[upcoming].innerHTML
-                }
-            }
-        })
-    </script>
-</body>
+        // $('.container').on('swipeview-moveout', function(e, masterPages, options, currentMasterPage) {
+        //     masterPages[currentMasterPage].className = masterPages[currentMasterPage].className.replace(/(^|\s)swipeview-active(\s|$)/, '');
+        // })
+
+        // $('.container').on('swipeview-movein', function(e, masterPages, options, currentMasterPage) {
+        //     var className = masterPages[currentMasterPage].className;
+        //     /(^|\s)swipeview-active(\s|$)/.test(className) || (masterPages[currentMasterPage].className = !className ? 'swipeview-active' : className + ' swipeview-active');
+        // })
+        </script>
+    </body>
+
 </html>

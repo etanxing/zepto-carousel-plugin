@@ -16,3 +16,21 @@ A lightweight zepto plugin totally based on [SwipeView](https://github.com/cubiq
 ``` javascript
 $('.container').carousel({slides: $('.slides').children()});
 ```
+
+``` events
+$('.container').on('swipeview-flip', function(e, masterPages, options, currentMasterPage) {
+	....
+}
+
+$('.container').on('swipeview-moveout', function(e, masterPages, options, currentMasterPage) {
+	....
+}
+
+$('.container').on('swipeview-movein', function(e, masterPages, options, currentMasterPage) {
+	....
+}
+
+$('.container').on('swipeview-touchstart', function(e, masterPages, options, currentMasterPage) {
+	....
+}
+```

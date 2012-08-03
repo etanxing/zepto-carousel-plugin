@@ -74,10 +74,11 @@
             this.masterPages[1].className = !className ? 'swipeview-active' : className + ' swipeview-active';
 
             window.addEventListener(resizeEvent, this, false);
-            this.wrapper[0].addEventListener(startEvent, this, false);
-            this.wrapper[0].addEventListener(moveEvent, this, false);
-            this.wrapper[0].addEventListener(endEvent, this, false);
-            this.slider.addEventListener('webkitTransitionEnd', this, false);
+            this.wrapper.on(startEvent, $.proxy(this.handleEvent, this))
+            this.wrapper.on(startEvent, $.proxy(this.handleEvent, this));
+            this.wrapper.on(moveEvent, $.proxy(this.handleEvent, this));
+            this.wrapper.on(endEvent, $.proxy(this.handleEvent, this));
+            $(this.slider).on('webkitTransitionEnd', $.proxy(this.handleEvent, this));
 
             // BTNS
             btn.prev.on('tap, click', $.proxy(this.prev, this));
@@ -98,10 +99,11 @@
                 
                 // Remove the event listeners
                 window.removeEventListener(resizeEvent, this, false);
-                this.wrapper[0].removeEventListener(startEvent, this, false);
-                this.wrapper[0].removeEventListener(moveEvent, this, false);
-                this.wrapper[0].removeEventListener(endEvent, this, false);
-                this.slider.removeEventListener('webkitTransitionEnd', this, false);
+                this.wrapper.off(startEvent, $.proxy(this.handleEvent, this))
+                this.wrapper.off(startEvent, $.proxy(this.handleEvent, this));
+                this.wrapper.off(moveEvent, $.proxy(this.handleEvent, this));
+                this.wrapper.off(endEvent, $.proxy(this.handleEvent, this));
+                $(this.slider).off('webkitTransitionEnd', $.proxy(this.handleEvent, this));
             },
 
             refreshSize: function () {
@@ -383,6 +385,15 @@
             
             __flip: function () {                
                 this.__event('flip');
+                var el, upcoming, i;
+
+                for (i = 0; i < 3; i++) {
+                    upcoming = this.masterPages[i].dataset.upcomingPageIndex;
+                    if (upcoming != this.masterPages[i].dataset.pageIndex) {
+                        el = this.masterPages[i].querySelector('div')
+                        el.innerHTML = this.options.slides[upcoming].innerHTML
+                    }
+                }
 
                 for (var i=0; i<3; i++) {
                     this.masterPages[i].className = this.masterPages[i].className.replace(/(^|\s)swipeview-loading(\s|$)/, '');     // Remove the loading class
@@ -391,7 +402,7 @@
             },
             
             __event: function (type) {
-                this.wrapper.trigger('swipeview-' + type, [this.masterPages, this.options])
+                this.wrapper.trigger('swipeview-' + type, [this.masterPages, this.options, this.currentMasterPage])
             }
         };
 
