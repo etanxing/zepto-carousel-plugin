@@ -2,6 +2,7 @@
 
 A lightweight zepto plugin totally based on [SwipeView](https://github.com/cubiq/SwipeView). Live demo is [here](http://etanxing.github.com/).
 
+#### html
 ``` html
 <div class="container">
 </div>
@@ -12,11 +13,12 @@ A lightweight zepto plugin totally based on [SwipeView](https://github.com/cubiq
     <div class="slide">Page4</div>
 </div>
 ```
-
+#### javascript
 ``` javascript
 $('.container').carousel({slides: $('.slides').children()});
 ```
 
+#### events
 ``` events
 $('.container').on('swipeview-flip', function(e, masterPages, options, currentMasterPage) {
 	....
